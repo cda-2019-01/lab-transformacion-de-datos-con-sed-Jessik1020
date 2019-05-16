@@ -2,11 +2,11 @@
 #!/bin/bash
 
 #Cambiar separador de la fecha 
-sed 's|/|-|g' data.csv > out1.csv
+sed 's|/|-|g' data.csv > out.csv
 
 #Organizar fecha en formato YYYY-MM-DD
- awk  '{print gensub(/([0-9][0-9])-([0-9][0-9])-([0-9][0-9])/, "20\\3-\\2-\\1", 1)}' out1.csv > out2.csv
-
+ awk  '{print gensub(/([0-9][0-9])-([0-9][0-9])-([0-9][0-9])/, "20\\3-\\2-\\1", 1)}' out.csv > out1.csv
+ awk  '{print gensub(/([0-9])-[0-9])-([0-9][0-9])([0-9][0-9])/, "\\3-0\\2-0\\1", 1)}' out1.csv > out2.csv
  #Organizar campos nulos
  awk '{sub(/;N/, ";\\N"); print}' out2.csv > out3.csv
  awk '{gsub(/;;/,   ";\\N;"); print}' out3.csv > out4.csv
