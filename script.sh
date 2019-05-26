@@ -24,11 +24,14 @@ awk '{gsub(/;/, ","); print}' out6.csv > out7.csv
 #Cambiar separador decimal por .
 awk  '{print gensub(/,/, ".", 4)}' out7.csv > out8.csv
 
+#Cambiar 3 linea el punto por coma
+sed '3 s/\./,/g' out8.csv > out9.csv
+
 #Mostrar registros que no tienen campos nulos 
 #sed '\:\N:d' out8.csv > out9.csv 
 
 #Mostrar lab final
-cat out8.csv
+cat out9.csv
 
 #Borrar archivos
 rm out*
